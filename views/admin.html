@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+</head>
+<body>
+<!-- bagian awal navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">LOGO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+        <a class="nav-link" href="admin.html">Admin</a>
+        <a class="nav-link" href="#">Pengadaan</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- bagian akhir navbar -->
+
+
+<!-- bagian awal modal tambah data buku-->
+<div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="controller" method="post">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">ID Buku:</label>
+            <input type="text" class="form-control" id="recipient-name" name="id_buku">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Kategori:</label>
+            <input type="text" class="form-control" id="recipient-name" name="kategori">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nama buku:</label>
+            <input type="text" class="form-control" id="recipient-name" name="nama_buku">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Harga:</label>
+            <input type="text" class="form-control" id="recipient-name" name="harga">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Stok:</label>
+            <input type="text" class="form-control" id="recipient-name" name="stok">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Penerbit:</label>
+            <input type="text" class="form-control" id="recipient-name" name="penerbit">
+          </div>
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" name="tambah">
+          
+          
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- bagian akhir modal tambah data buku-->
+
+<!-- bagian awal modal tambah data penerbit -->
+<div class="modal fade" id="modalTambahpenerbit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="controller" method="post">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">ID Penerbit:</label>
+            <input type="text" class="form-control" id="recipient-name" name="id_penerbit">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nama:</label>
+            <input type="text" class="form-control" id="recipient-name" name="nama">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Alamat:</label>
+            <input type="text" class="form-control" id="recipient-name" name="alamat">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Kota:</label>
+            <input type="text" class="form-control" id="recipient-name" name="kota">
+          </div>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Telepon:</label>
+            <input type="text" class="form-control" id="recipient-name" name="telepon">
+          </div>
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" name="tambah">
+          
+          
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- bagian akhir modal tambah data penerbit-->
+
+
+<!-- Tabel Awal Buku -->
+    <!-- bagian awal tabel -->
+    <div class="container">
+        <h2>Data Buku</h2>
+
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambah" data-bs-whatever="@mdo">Tambah Data</button>
+        <table id="myTable">
+        <tr class="header">
+            <th >ID Buku</th>
+            <th >Kategori</th>
+            <th >Nama Buku</th>
+            <th >Harga</th>
+            <th >Stok</th>
+            <th >Penerbit</th>
+            <th >Aksi</th>
+        </tr>
+        <tr>
+            <td><?= $dt['id_buku'] ?></td>
+            <td><?= $dt['kategori'] ?></td>
+            <td><?= $dt['nama_buku'] ?></td>
+            <td><?= $dt['harga'] ?></td>
+            <td><?= $dt['stok'] ?></td>
+            <td><?= $dt['penerbit'] ?></td>
+            <td>
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUbah<?= $dt['id_buku'] ?>" data-bs-whatever="@mdo">Ubah</button>
+                    <!-- bagian awal modal ubah data -->
+                    <div class="modal fade" id="modalUbah<?= $dt['id_buku'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ubah Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="controller" method="post">
+                            <input type="hidden" class="form-control" id="recipient-name" name="id" value="<?= $dt['id'] ?>">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">ID Buku:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="id_buku" value="<?= $dt['id_buku'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Kategori:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="kategori" value="<?= $dt['kategori'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Nama buku:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="nama_buku" value="<?= $dt['nama_buku'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Harga:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="harga" value="<?= $dt['harga'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Stok:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="stok" value="<?= $dt['stok'] ?>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Penerbit:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="penerbit" value="<?= $dt['penerbit'] ?>">
+                            </div>
+
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" name="ubahdata">
+                            
+                            
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- bagian akhir modal ubah data -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalhapus<?= $dt['id_buku'] ?>" data-bs-whatever="@mdo">Hapus</button>
+                    <!-- bagian awal modal hapus data -->
+                    <div class="modal fade" id="modalhapus<?= $dt['id_buku'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="controller" method="post">
+                            <input type="hidden" class="form-control" id="recipient-name" name="id" value="<?= $dt['id'] ?>">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Apakah anda ingin menghapus ID Buku: <?= $dt['id_buku'] ?> </label>
+                            </div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-danger" name="hapusdata">
+                            
+                            
+                            </form>
+
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- bagian akhir modal hapus data -->
+            </td>
+        </tr>
+        </table>
+    </div>
+    <!-- bagian akhir tabel -->
+<!-- Akhir Tabel Buku -->
+
+<!-- Tabel Awal Penerbit -->
+    <!-- bagian awal tabel -->
+        <div class="container mt-5">
+            <h2>Data Penerbit</h2>
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahpenerbit" data-bs-whatever="@mdo">Tambah Data</button>
+            <table id="myTable">
+            <tr class="header">
+                <th >ID Penerbit</th>
+                <th >Nama</th>
+                <th >Alamat</th>
+                <th >Kota</th>
+                <th >Telepon</th>
+                <th >Aksi</th>
+            </tr>
+            <tr>
+                <td><?= $dt['id_penerbit'] ?></td>
+                <td><?= $dt['nama'] ?></td>
+                <td><?= $dt['alamat'] ?></td>
+                <td><?= $dt['kota'] ?></td>
+                <td><?= $dt['telpon'] ?></td>
+                <td>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUbah<?= $dt['id_penerbit'] ?>" data-bs-whatever="@mdo">Ubah</button>
+                        <!-- bagian awal modal ubah data -->
+                        <div class="modal fade" id="modalUbah<?= $dt['id_penerbit'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ubah Data</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form action="controller" method="post">
+                                <input type="hidden" class="form-control" id="recipient-name" name="id" value="<?= $dt['id'] ?>">
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">ID Penerbit:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="id_penerbit" value="<?= $dt['id_penerbit'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nama:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="nama" value="<?= $dt['nama'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Alamat:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="alamat" value="<?= $dt['alamat'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Kota:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="kota" value="<?= $dt['kota'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Telepon:</label>
+                                    <input type="text" class="form-control" id="recipient-name" name="telpon" value="<?= $dt['telpon'] ?>">
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" name="ubahdata">
+                                
+                                
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- bagian akhir modal ubah data -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalhapus<?= $dt['id_buku'] ?>" data-bs-whatever="@mdo">Hapus</button>
+                    <!-- bagian awal modal hapus data -->
+                    <div class="modal fade" id="modalhapus<?= $dt['id_buku'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form action="controller" method="post">
+                                <input type="hidden" class="form-control" id="recipient-name" name="id" value="<?= $dt['id'] ?>">
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Apakah anda ingin menghapus ID Penerbit: <?= $dt['id_penerbit'] ?> </label>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-danger" name="hapusdata">
+                                </form>
+
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- bagian akhir modal hapus data -->
+                </td>
+            </tr>
+            </table>
+        </div>
+    <!-- bagian akhir tabel -->
+<!-- Akhir Tabel Penerbit -->
+
+<footer class=" bg-dark">
+    <div class="bottem-wthree-footer text-center py-md-3 py-3">
+        <p>© Copyright 2022. All right reserved. <a href="https://getbootstrap.com/">Powered by bootstrap</a> | fatwa hazjuang </p>
+    </div>
+</footer>
+<!-- bagian akhir footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="../static/js/script.js"></script>
+</body>
+</html>
